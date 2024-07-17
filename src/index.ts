@@ -2,7 +2,7 @@ import type { Repos } from './interface/Repo.js';
 import inquirer from 'inquirer';
 import { simpleGit } from 'simple-git';
 import path from 'path';
-import { rmdirSync } from 'fs';
+import { rmSync } from 'fs';
 import chalk from 'chalk';
 import { Branches } from './interface/Branch.js';
 
@@ -57,7 +57,7 @@ async function init() {
         await git.clone(selectedBoilerplate.clone_url, targetPath, {
             '--branch': branch,
         });
-        rmdirSync(path.join(targetPath, '.git'), { recursive: true });
+        rmSync(path.join(targetPath, '.git'), { recursive: true });
         console.log(chalk.green('Project initialized successfully!'));
     } catch (error) {
         console.error('Error initializing project:', error);
